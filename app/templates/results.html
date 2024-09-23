@@ -1,0 +1,42 @@
+<thead>
+  <tr>
+  {% if alle_selected %}<th scope="col">Kurs</th>{% endif %}
+    <th scope="col">Stunde</th>
+    <th scope="col">Raum</th>
+    <th scope="col">Lehrer</th>
+    <th scope="col">Typ</th>
+    <th scope="col">Notizen</th>
+  </tr>
+</thead>
+<tbody>
+  {% for item in results %}
+  <tr>
+    <!-- Kurs -->
+    {% if alle_selected %}<th scope="row">{{item[0]}}</th>{% endif %}
+
+    <!-- Stunde -->
+    <td>{{item[1]}}{% if (item[2] != None) %}-{{item[2]}} {% endif %}</td>
+
+    <!-- Raum -->
+    <td>
+      {% if (item[4] == None) %}{{item[3]}}{% endif %}
+      {% if (item[4] != None) %}<b>{{item[4]}}</b> ({{item[3]}}){% endif %}
+    </td>
+    <!-- Lehrer -->
+    <td>
+      {% if (item[6] == None) %}{{item[5]}}{% endif %}
+      {% if (item[6] != None) %}<b>{{item[6]}}</b> ({{item[5]}}){% endif %}
+    </td>
+
+    <!-- Typ -->
+    <td>
+      {% if (item[7] != None) %}{{item[7]}}{% endif %}
+    </td>
+
+    <!-- Beschreibung -->
+    <td>
+      {% if (item[8] != None) %}{{item[8]}}{% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</tbody>
