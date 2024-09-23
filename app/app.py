@@ -1,20 +1,13 @@
-from dotenv import load_dotenv
 import os
 from flask import Flask, render_template, request, make_response
 import psycopg2
 import datetime
 from markupsafe import escape
 
-load_dotenv()
 
 
-connection = psycopg2.connect(
-	database=os.getenv("pg_database"),
-	host=os.getenv("pg_host"),
-	port=os.getenv("pg_port"),
-	user=os.getenv("pg_user"),
-	password=os.getenv("pg_password")
-)
+connection = psycopg2.connect(os.environ['DATABASE_URL'], sslmode='require')
+
 cursor = connection.cursor()
 
 app = Flask(__name__)
