@@ -4,8 +4,6 @@ import psycopg2
 import datetime
 from markupsafe import escape
 
-
-
 connection = psycopg2.connect(os.environ['DATABASE_URL'], sslmode='require')
 
 cursor = connection.cursor()
@@ -53,18 +51,27 @@ def fetchSelectedEntries(date, kurs):
 
     return cursor.fetchall()
 
+def fetchCourses():
+    query = """
+            SELECT DISTINCT kurs FROM aktuell
+            ORDER BY kurs;  
+            """
+    cursor.execute(query)
+    return(cursor.fetchall())
+
 
 @app.route("/", methods=["GET"])
 def index():
     cookie_course = request.cookies.get("last_course")
     default_course = "Alle" if cookie_course == None else cookie_course #Set the default course to "Alle" or, if exists, the current cookie value
 
-    default_date = datetime.date.today().strftime("%Y-%m-%d")
+    current_date = datetime.date.today().strftime("%Y-%m-%d")
     
     return render_template(
         "index.html",
-        default_date=default_date,
-        default_course=default_course
+        default_date=current_date,
+        default_course=default_course,
+        courses=fetchCourses()
     )
 
 

@@ -2,7 +2,6 @@ import os
 import sys
 import psycopg2
 from back.fetchData import VertretungsTag
-from back.updateCourses import updateCourses
 
 
 connection = psycopg2.connect(os.environ['DATABASE_URL'], sslmode='require')
@@ -19,7 +18,5 @@ for r in range(offset_1, offset_2):
 	v.fetch(r)
 	v.format()
 	v.writeToDB(connection)
-
-updateCourses(connection)
 
 connection.close()
