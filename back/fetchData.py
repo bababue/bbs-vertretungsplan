@@ -185,6 +185,6 @@ class VertretungsTag:
                     item.typ,
                     item.beschreibung
                     ]
-        cursor.execute(query, values)
+            cursor.execute(query, values)
 
         connection.commit()
