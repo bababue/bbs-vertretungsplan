@@ -1,10 +1,9 @@
 # Vertretungsplan
 
+Live instance: [bbsfts.de](https://bbsfts.de/)
+
 Reformatting of the WebUntis Monitor view  
-
 Built with flask, htmx and postgresql
-Consists of a scraping program, which stores results in a datbase, and a flask frontend
-
 
 ## Usage
 ### Scraping

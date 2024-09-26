@@ -101,17 +101,17 @@ class VertretungsTag:
                 self.stunde = int(stunde[0])
                 self.stunde2 = int(stunde[-1])
             
-            regex_original = re.compile(r"[^\(\)]+") 
-            regex_ersatz = re.compile(r"(?<=\().+?(?=\))")
+            # regex_original = re.compile(r"[^\(\)]+") 
+            # regex_ersatz = re.compile(r"(?<=\().+?(?=\))")
 
             cleaned_raum = re.sub(remove_html_tags, "", item["data"][1])
 
-            if cleaned_raum.count("(") == 0:
+            if cleaned_raum.count("(") > 1:
                 self.raum = cleaned_raum
                 self.raum_ersatz = None
-            elif cleaned_raum.count("(") == 1:
-                 self.raum = re.findall(regex_original, cleaned_raum)[0].rstrip()
-                 self.raum_ersatz = re.findall(regex_ersatz, cleaned_raum)[0]
+            # elif cleaned_raum.count("(") == 1:
+            #     self.raum = re.findall(regex_original, cleaned_raum)[0].rstrip()
+            #     self.raum_ersatz = re.findall(regex_ersatz, cleaned_raum)[0]
             elif "Entfall" in typ_escaped or "Verlegung nach" in typ_escaped:
                 self.raum= cleaned_raum
                 self.raum_ersatz = "---"
