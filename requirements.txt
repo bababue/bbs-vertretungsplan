@@ -3,4 +3,3 @@ flask
 gunicorn
 markupsafe
 psycopg2-binary
-python-dotenv
