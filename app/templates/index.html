@@ -27,31 +27,33 @@
     />
   </head>
   <body>
-    <h1 class="text-center mb-1">Vertretungsplan</h1>
+    <div class="container mt-4">
 
-    <div id="content" class="mb-3 text-center">
+      <h1 class="text-center mb-1">Vertretungsplan</h1>
 
-      <form hx-post="/query" hx-trigger="change, load" hx-target="#results">
-        <input
-          class="inputs"
-          value="{{default_date}}"
-          type="date"
-          id="date"
-          name="date"
-        />
+      <div id="content" class="mb-3 text-center">
 
-        <select class="inputs" name="kurs" id="kurs">
-          {% include "courses.html" %}
-        </select>
-      </form>
+        <form hx-post="/query" hx-trigger="change, load" hx-target="#results">
+          <input
+            class="inputs"
+            value="{{default_date}}"
+            type="date"
+            id="date"
+            name="date"
+          />
+
+          <select class="inputs" name="kurs" id="kurs">
+            {% include "courses.html" %}
+          </select>
+        </form>
+
+        </div>
+        <div class="table-responsive">
+          <table id="results" class="table table-striped">
+            <!-- HTMX goes in here -->
+          </table>
 
       </div>
-      <div class="table-responsive">
-        <table id="results" class="table table-striped">
-          <!-- HTMX goes in here -->
-        </table>
-
     </div>
-
   </body>
 </html>
