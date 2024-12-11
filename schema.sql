@@ -1,5 +1,5 @@
 CREATE TABLE aktuell (
-    id  SERIAL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     datum DATE NOT NULL,
     stunde INTEGER,
     stunde_2 INTEGER,
